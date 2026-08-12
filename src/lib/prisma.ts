@@ -11,7 +11,6 @@ function getDatabaseUrl(): string {
     return process.env.DATABASE_URL;
   }
 
-  // Check if running on Vercel / serverless environment
   if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
     const tmpDbPath = '/tmp/dev.db';
     const sourceDbPath = path.join(process.cwd(), 'prisma', 'dev.db');
@@ -22,7 +21,9 @@ function getDatabaseUrl(): string {
           fs.copyFileSync(sourceDbPath, tmpDbPath);
         }
       }
-      return `file:${tmpDbPath}`;
+      if (fs.existsSync(tmpDbPath)) {
+        return `file:${tmpDbPath}`;
+      }
     } catch (e) {
       console.error('Error copying SQLite database to /tmp:', e);
     }
