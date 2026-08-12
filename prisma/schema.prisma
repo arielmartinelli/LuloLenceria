@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  description String?
+  image       String?
+  active      Boolean   @default(true)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id            String           @id @default(uuid())
+  name          String
+  slug          String           @unique
+  description   String
+  price         Float
+  originalPrice Float?
+  cost          Float?
+  sku           String           @unique
+  categoryId    String
+  category      Category         @relation(fields: [categoryId], references: [id])
+  isFeatured    Boolean          @default(false)
+  isOffer       Boolean          @default(false)
+  is18Plus      Boolean          @default(false)
+  active        Boolean          @default(true)
+  images        ProductImage[]
+  variants      ProductVariant[]
+  orderItems    OrderItem[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+model ProductImage {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  order     Int      @default(0)
+}
+
+model ProductVariant {
+  id          String              @id @default(uuid())
+  productId   String
+  product     Product             @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size        String?
+  color       String?
+  model       String?
+  sku         String              @unique
+  stock       Int                 @default(0)
+  movements   InventoryMovement[]
+  orderItems  OrderItem[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model InventoryMovement {
+  id            String         @id @default(uuid())
+  variantId     String
+  variant       ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  type          String         // INGRESO, VENTA, AJUSTE_MANUAL, DEVOLUCION, CANCELACION
+  quantity      Int
+  previousStock Int
+  newStock      Int
+  notes         String?
+  createdAt     DateTime       @default(now())
+}
+
+model Order {
+  id             String      @id @default(uuid())
+  orderNumber    Int         @unique
+  customerName   String
+  customerPhone  String
+  city           String
+  address        String
+  deliveryMethod String      // RETIRO, ENVIO
+  paymentMethod  String      // EFECTIVO, TRANSFERENCIA, OTRO
+  comments       String?
+  totalAmount    Float
+  status         String      @default("PENDIENTE") // PENDIENTE, CONFIRMADO, PREPARANDO, ENVIADO, ENTREGADO, CANCELADO
+  paymentStatus  String      @default("PENDIENTE") // PENDIENTE, COBRADO, NO_COBRADO
+  items          OrderItem[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+model OrderItem {
+  id             String         @id @default(uuid())
+  orderId        String
+  order          Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId      String
+  product        Product        @relation(fields: [productId], references: [id])
+  variantId      String
+  variant        ProductVariant @relation(fields: [variantId], references: [id])
+  productName    String
+  variantDetails String
+  quantity       Int
+  unitPrice      Float
+  subtotal       Float
+}
+
+model StoreSettings {
+  id              String   @id @default("1")
+  storeName       String   @default("Lulo Lencería")
+  logo            String?
+  whatsappNumber  String   @default("5491112345678")
+  instagramUrl    String   @default("https://instagram.com/lulolenceria")
+  address         String   @default("Av. Santa Fe 1234, CABA")
+  hours           String   @default("Lun a Sáb 10:00 a 19:00 hs")
+  ageNoticeText   String   @default("Este sitio contiene productos destinados exclusivamente a mayores de 18 años.")
+  shippingCost    Float    @default(2500)
+  deliveryMethods String   @default("Retiro en Local, Envío a Domicilio")
+  paymentMethods  String   @default("Efectivo, Transferencia Bancaria, Otro")
+  updatedAt       DateTime @updatedAt
+}
