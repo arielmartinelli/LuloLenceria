@@ -1,58 +1,99 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, MessageCircle, MapPin, Clock, Phone, UserCheck } from 'lucide-react';
+import Image from 'next/image';
+import { MessageCircle, Instagram, Mail, MapPin, Heart, ShieldAlert } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-[#EFE8E3] pt-16 pb-12 text-[#5A4A4E]">
+    <footer className="bg-white border-t border-[#EFE8E3] pt-12 pb-8 text-[#2D151B]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-[#EFE8E3]">
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="inline-block">
-              <span className="font-serif text-2xl font-bold tracking-wider text-[#7A1C30]">
-                LULO LENCERÍA
-              </span>
-              <span className="block text-[10px] tracking-[0.2em] text-[#C5A059] uppercase font-medium -mt-1">
-                Sentite cómoda. Sentite vos.
-              </span>
+            <Link href="/" className="inline-flex items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt="Lulo Lencería Logo"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain shrink-0"
+              />
+              <div>
+                <span className="font-serif text-xl font-bold tracking-wider text-[#7A1C30] block">
+                  LULO LENCERÍA
+                </span>
+                <span className="text-[9px] tracking-widest text-[#C5A059] uppercase font-bold">
+                  SENTITE CÓMODA. SENTITE VOS.
+                </span>
+              </div>
             </Link>
+
             <p className="text-xs text-[#6E5C62] leading-relaxed">
-              Marca de lencería femenina, bikinis de diseño, indumentaria deportiva y artículos eróticos para potenciar tu sensualidad con elegancia y confort.
+              Diseño, confort y sensualidad en cada prenda. Bikinis, lencería femenina, indumentaria deportiva y artículos eróticos.
             </p>
-            <div className="flex items-center gap-3 pt-2">
-              <a
-                href="https://wa.me/5491112345678"
-                target="_blank"
-                rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:opacity-90 shadow-soft transition-all"
-                aria-label="WhatsApp"
-                title="WhatsApp Directo"
-              >
-                <MessageCircle className="w-5 h-5 fill-current" />
-              </a>
+
+            <div className="flex items-center gap-3 pt-1">
               <a
                 href="https://instagram.com/lulolenceria"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-[#F3E3E5] text-[#7A1C30] flex items-center justify-center hover:bg-[#7A1C30] hover:text-white transition-all"
+                className="w-9 h-9 rounded-full bg-[#FAF7F5] border border-[#EFE8E3] text-[#7A1C30] flex items-center justify-center hover:bg-[#7A1C30] hover:text-white transition"
                 aria-label="Instagram"
-                title="Instagram @lulolenceria"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://wa.me/5491112345678?text=Hola%20Lulo%20Lencer%C3%ADa%20💕"
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-[#FAF7F5] border border-[#EFE8E3] text-[#25D366] flex items-center justify-center hover:bg-[#25D366] hover:text-white transition"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
               </a>
             </div>
           </div>
 
-          {/* Categories Links */}
-          <div>
-            <h3 className="font-serif text-base font-bold text-[#2D151B] mb-4 tracking-wide border-b border-[#EFE8E3] pb-2">
+          {/* Quick Links */}
+          <div className="space-y-3">
+            <h4 className="font-serif text-sm font-bold text-[#7A1C30] uppercase tracking-wider">
+              Navegación
+            </h4>
+            <ul className="space-y-2 text-xs font-medium">
+              <li>
+                <Link href="/" className="hover:text-[#7A1C30] transition">
+                  Inicio
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog" className="hover:text-[#7A1C30] transition">
+                  Catálogo Completo
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog?offer=true" className="hover:text-[#7A1C30] transition">
+                  Ofertas Especiales
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalog?category=mas-18" className="hover:text-[#7A1C30] transition font-bold text-[#7A1C30]">
+                  Línea Exclusiva +18
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Categories */}
+          <div className="space-y-3">
+            <h4 className="font-serif text-sm font-bold text-[#7A1C30] uppercase tracking-wider">
               Categorías
-            </h3>
-            <ul className="space-y-2.5 text-xs font-medium">
+            </h4>
+            <ul className="space-y-2 text-xs font-medium">
               <li>
                 <Link href="/catalog?category=bikinis" className="hover:text-[#7A1C30] transition">
-                  Bikinis & Trajes de Baño
+                  Bikinis de Diseño
                 </Link>
               </li>
               <li>
@@ -66,60 +107,59 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/catalog?category=mas-18" className="hover:text-[#7A1C30] transition font-bold text-[#7A1C30]">
-                  Línea +18 / Eróticos
-                </Link>
-              </li>
-              <li>
-                <Link href="/catalog?offer=true" className="hover:text-[#7A1C30] transition">
-                  Ofertas Especiales
+                <Link href="/catalog?category=mas-18" className="hover:text-[#7A1C30] transition">
+                  Juguetes & Eróticos +18
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h3 className="font-serif text-base font-bold text-[#2D151B] mb-4 tracking-wide border-b border-[#EFE8E3] pb-2">
-              Contacto & Atención
-            </h3>
-            <ul className="space-y-3 text-xs">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
-                <span>Av. Santa Fe 1842, CABA, Argentina</span>
+          <div className="space-y-3">
+            <h4 className="font-serif text-sm font-bold text-[#7A1C30] uppercase tracking-wider">
+              Atención al Cliente
+            </h4>
+            <ul className="space-y-2.5 text-xs text-[#6E5C62]">
+              <li className="flex items-center gap-2">
+                <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0 fill-current" />
+                <a
+                  href="https://wa.me/5491112345678"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:underline font-bold text-[#2D151B]"
+                >
+                  +54 9 11 1234-5678 (WhatsApp)
+                </a>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Clock className="w-4 h-4 text-[#C5A059] shrink-0" />
-                <span>Lun a Sáb: 10:00 a 20:00 hs</span>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#C5A059] shrink-0" />
+                <span>Envíos discretos a todo el país</span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
-                <span>+54 9 11 1234-5678</span>
+              <li className="flex items-center gap-2">
+                <ShieldAlert className="w-4 h-4 text-[#7A1C30] shrink-0" />
+                <span>Venta reservada a +18 años</span>
               </li>
             </ul>
           </div>
-
-          {/* Privacy & Discretion box */}
-          <div className="bg-[#FAF7F5] p-5 rounded-2xl border border-[#EFE8E3] space-y-3">
-            <h4 className="font-semibold text-xs text-[#2D151B]">Envíos Discretos</h4>
-            <p className="text-[11px] text-[#6E5C62] leading-relaxed">
-              Todos los paquetes de artículos +18 se despachan en embalaje totalmente neutro e insonoro sin referencias de producto.
-            </p>
-          </div>
         </div>
 
-        {/* Footer Bottom Bar with Admin Panel link */}
-        <div className="border-t border-[#EFE8E3] pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#6E5C62] gap-4">
-          <p>© {new Date().getFullYear()} Lulo Lencería. Todos los derechos reservados.</p>
+        {/* Bottom Bar & Admin Link */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6E5C62]">
+          <div className="flex items-center gap-1">
+            <span>© {new Date().getFullYear()} Lulo Lencería. Hecho con</span>
+            <Heart className="w-3.5 h-3.5 text-[#7A1C30] fill-current inline" />
+            <span>para vos.</span>
+          </div>
 
-          {/* Admin link located at the bottom of the footer */}
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FAF7F5] hover:bg-[#F3E3E5] border border-[#EFE8E3] text-[#7A1C30] font-semibold text-[11px] transition"
-          >
-            <UserCheck className="w-3.5 h-3.5" />
-            Panel de Administración
-          </Link>
+          {/* Discreet Admin Footer Link */}
+          <div>
+            <Link
+              href="/admin"
+              className="text-[11px] text-gray-400 hover:text-[#7A1C30] transition font-medium underline"
+            >
+              Panel de Administración
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
