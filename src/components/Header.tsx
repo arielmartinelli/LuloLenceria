@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import { ShoppingBag, Search, Menu, X } from 'lucide-react';
 
@@ -39,24 +38,15 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Center/Left: Brand Logo with Image */}
+          {/* Center/Left: Brand Logo (Typography Only) */}
           <div className="flex-1 lg:flex-none text-center lg:text-left">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="Lulo Lencería Logo"
-                width={40}
-                height={40}
-                className="w-8 h-8 sm:w-10 sm:h-10 object-contain shrink-0"
-              />
-              <div className="text-left">
-                <span className="font-serif text-sm sm:text-xl font-bold tracking-wider text-[#7A1C30] block leading-tight">
-                  LULO LENCERÍA
-                </span>
-                <span className="hidden sm:block text-[9px] tracking-widest text-[#C5A059] uppercase font-bold -mt-0.5">
-                  SENTITE CÓMODA. SENTITE VOS.
-                </span>
-              </div>
+            <Link href="/" className="inline-block">
+              <span className="font-serif text-sm sm:text-2xl font-bold tracking-wider text-[#7A1C30] block leading-tight">
+                LULO LENCERÍA
+              </span>
+              <span className="hidden sm:block text-[9px] tracking-widest text-[#C5A059] uppercase font-bold -mt-0.5">
+                SENTITE CÓMODA. SENTITE VOS.
+              </span>
             </Link>
           </div>
 

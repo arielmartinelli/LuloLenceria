@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { MessageCircle, Instagram, Mail, MapPin, Heart, ShieldAlert } from 'lucide-react';
 
 export default function Footer() {
@@ -12,22 +11,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-[#EFE8E3]">
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <Image
-                src="/logo.png"
-                alt="Lulo Lencería Logo"
-                width={48}
-                height={48}
-                className="w-12 h-12 object-contain shrink-0"
-              />
-              <div>
-                <span className="font-serif text-xl font-bold tracking-wider text-[#7A1C30] block">
-                  LULO LENCERÍA
-                </span>
-                <span className="text-[9px] tracking-widest text-[#C5A059] uppercase font-bold">
-                  SENTITE CÓMODA. SENTITE VOS.
-                </span>
-              </div>
+            <Link href="/" className="inline-block">
+              <span className="font-serif text-xl font-bold tracking-wider text-[#7A1C30] block">
+                LULO LENCERÍA
+              </span>
+              <span className="text-[9px] tracking-widest text-[#C5A059] uppercase font-bold">
+                SENTITE CÓMODA. SENTITE VOS.
+              </span>
             </Link>
 
             <p className="text-xs text-[#6E5C62] leading-relaxed">
