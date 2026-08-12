@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'Lulo Lencería',
     images: [
       {
-        url: '/metaimg.png',
+        url: 'https://lulo-lenceria.vercel.app/metaimg.png',
         width: 1200,
         height: 1200,
         alt: 'Lulo Lencería',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Lulo Lencería | Sentite cómoda. Sentite vos.',
     description:
       'Tienda online de lencería femenina, bikinis de diseño, indumentaria deportiva y artículos eróticos +18.',
-    images: ['/metaimg.png'],
+    images: ['https://lulo-lenceria.vercel.app/metaimg.png'],
   },
 };
 
