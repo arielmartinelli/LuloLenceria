@@ -14,8 +14,9 @@ export const metadata: Metadata = {
     'Tienda online de lencería femenina, bikinis de diseño, indumentaria deportiva y artículos eróticos +18 con envíos a todo el país y atención personalizada vía WhatsApp.',
   metadataBase: new URL('https://lulo-lenceria.vercel.app'),
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/icono.png',
+    shortcut: '/icono.png',
+    apple: '/icono.png',
   },
   openGraph: {
     title: 'Lulo Lencería | Sentite cómoda. Sentite vos.',
@@ -25,9 +26,9 @@ export const metadata: Metadata = {
     siteName: 'Lulo Lencería',
     images: [
       {
-        url: '/og-image.png',
-        width: 800,
-        height: 800,
+        url: '/metaimg.png',
+        width: 1200,
+        height: 1200,
         alt: 'Lulo Lencería',
       },
     ],
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Lulo Lencería | Sentite cómoda. Sentite vos.',
     description:
       'Tienda online de lencería femenina, bikinis de diseño, indumentaria deportiva y artículos eróticos +18.',
-    images: ['/og-image.png'],
+    images: ['/metaimg.png'],
   },
 };
 
